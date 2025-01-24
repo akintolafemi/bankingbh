@@ -77,4 +77,82 @@ export class AppService {
       );
     }
   }
+
+  async fetchCustomerData(
+    customer_id: string,
+  ): Promise<standardResponse | HttpException> {
+    try {
+      const customer = await this.dbService.customers.findUnique({
+        where: {
+          customer_id,
+          deleted: false,
+        },
+        include: {
+          accounts: true,
+        },
+      });
+
+      if (!customer)
+        throw new HttpException(
+          'Customer type not found',
+          HttpStatus.NOT_FOUND,
+        );
+
+      return ResponseManager.standardResponse({
+        message: `Customer data fetched successfully!`,
+        code: HttpStatus.OK,
+        status: 'ok',
+        data: customer,
+      });
+    } catch (error) {
+      console.log(error);
+      throw new HttpException(
+        {
+          message: error?.response || 'Unknown error has occured',
+          status: 'error',
+          code: HttpStatus.INTERNAL_SERVER_ERROR,
+          data: error,
+        },
+        error?.status || HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
+  }
+
+  async fetchAccountTransactions(
+    account_number: string,
+  ): Promise<standardResponse | HttpException> {
+    try {
+      const transactions = await this.dbService.transactions.findMany({
+        where: {
+          OR: [
+            {
+              source_account_number: account_number,
+            },
+            {
+              destination_account_number: account_number,
+            },
+          ],
+          deleted: false,
+        },
+      });
+
+      return ResponseManager.standardResponse({
+        message: `Account transactions fetched successfully!`,
+        code: HttpStatus.OK,
+        status: 'ok',
+        data: transactions,
+      });
+    } catch (error) {
+      console.log(error);
+      throw new HttpException(
+        {
+          message: error?.response || 'Unknown error has occured',
+          status: 'error',
+          code: HttpStatus.INTERNAL_SERVER_ERROR,
+          data: error,
+        },
+        error?.status || HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
+  }
 }
