@@ -1,0 +1,63 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./database.db"
+}
+
+model customers {
+  id          Int        @id @unique @default(autoincrement())
+  email       String     @unique
+  full_name   String
+  customer_id String     @unique
+  created_at  DateTime   @default(now())
+  updated_at  DateTime?  @updatedAt
+  deleted_at  DateTime?
+  deleted     Boolean    @default(false)
+  accounts    accounts[]
+
+  @@index([customer_id])
+}
+
+model accounts {
+  id              Int            @id @unique @default(autoincrement())
+  customer_id     String
+  customer        customers      @relation(fields: [customer_id], references: [customer_id], onDelete: Restrict, onUpdate: Cascade)
+  account_number  String         @unique
+  account_balance Decimal
+  account_type    String?        @default("savings")
+  created_at      DateTime       @default(now())
+  updated_at      DateTime?      @updatedAt
+  deleted_at      DateTime?
+  deleted         Boolean        @default(false)
+  inflows         transactions[] @relation(name: "credit_transactions")
+  outflows        transactions[] @relation(name: "debit_transactions")
+
+  @@index([customer_id])
+  @@index([account_number])
+}
+
+model transactions {
+  id                         Int       @id @unique @default(autoincrement())
+  source_account_number      String
+  source_account             accounts  @relation(name: "credit_transactions", fields: [source_account_number], references: [account_number], onDelete: Restrict, onUpdate: Cascade)
+  destination_account_number String
+  destination_account        accounts  @relation(name: "debit_transactions", fields: [destination_account_number], references: [account_number], onDelete: Restrict, onUpdate: Cascade)
+  transaction_type           String?   @default("credit")
+  amount                     Decimal
+  created_at                 DateTime  @default(now())
+  updated_at                 DateTime? @updatedAt
+  deleted_at                 DateTime?
+  deleted                    Boolean   @default(false)
+
+  @@index([source_account_number, created_at])
+  @@index([destination_account_number, created_at])
+}
