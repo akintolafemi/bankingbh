@@ -2,7 +2,7 @@ import { Logger, ValidationPipe } from '@nestjs/common';
 import { NestApplication, NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { NestExpressApplication } from '@nestjs/platform-express';
-import { AppOptions, ValidationPipesOptions } from './app.options.utils';
+import { AppOptions, ValidationPipesOptions } from './app.utils';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(
