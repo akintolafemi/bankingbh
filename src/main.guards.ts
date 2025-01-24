@@ -10,15 +10,14 @@ import {
 export default class MainGuard implements CanActivate {
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest();
-
     if (!request.headers.authorization)
       throw new HttpException(
         {
           message: 'Authorization required to access endpoint',
-          statusText: 'Bad Request',
-          status: HttpStatus.BAD_REQUEST,
+          statusText: 'UNAUTHORIZED',
+          status: HttpStatus.UNAUTHORIZED,
         },
-        HttpStatus.BAD_REQUEST,
+        HttpStatus.UNAUTHORIZED,
       );
 
     const token = request.headers.authorization.split(' ')[1];

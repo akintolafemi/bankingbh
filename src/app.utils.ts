@@ -20,7 +20,15 @@ export const ValidationPipesOptions: ValidationPipeOptions = {
     return new BadRequestException({
       status: 'Bad Request',
       code: HttpStatus.BAD_REQUEST,
-      message: JSON.stringify(errors) || 'Unable to validate request',
+      message:
+        errors[0]?.children[0]?.children[0]?.constraints[
+          Object?.keys(errors[0]?.children[0]?.children[0]?.constraints)[0]
+        ] ||
+        errors[0]?.children[0]?.constraints[
+          Object?.keys(errors[0]?.children[0]?.constraints)[0]
+        ] ||
+        errors[0]?.constraints[Object?.keys(errors[0]?.constraints)[0]] ||
+        'Unable to validate request',
     });
   },
 };

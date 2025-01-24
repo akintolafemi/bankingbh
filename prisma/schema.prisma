@@ -51,7 +51,6 @@ model transactions {
   source_account             accounts  @relation(name: "credit_transactions", fields: [source_account_number], references: [account_number], onDelete: Restrict, onUpdate: Cascade)
   destination_account_number String
   destination_account        accounts  @relation(name: "debit_transactions", fields: [destination_account_number], references: [account_number], onDelete: Restrict, onUpdate: Cascade)
-  transaction_type           String?   @default("credit")
   amount                     Decimal
   created_at                 DateTime  @default(now())
   updated_at                 DateTime? @updatedAt
