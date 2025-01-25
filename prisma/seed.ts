@@ -8,7 +8,7 @@ async function main() {
       email: 'janedoe@gmail.com',
       accounts: {
         create: {
-          account_number: '001122334455',
+          account_number: '0011223344',
           account_balance: '5000.00',
           account_type: 'savings',
         },

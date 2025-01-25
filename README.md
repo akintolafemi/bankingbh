@@ -106,5 +106,5 @@ $ npm run test:cov
 
 | Customer ID                          | Account Number | Account Balance | Account Type |
 | ------------------------------------ | -------------- | --------------- | ------------ |
-| ad4501a3-233b-41d6-8d80-0e6e0a4ae2b4 | 001122334455   | 5000.00         | savings      |
+| ad4501a3-233b-41d6-8d80-0e6e0a4ae2b4 | 0011223344     | 5000.00         | savings      |
 | 639da415-bd0e-4807-a4e8-6979c1910c25 | 1020304050     | 4000.00         | savings      |
