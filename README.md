@@ -97,26 +97,14 @@ $ npm run test:cov
 
 # Customers
 
-[{
-customer_id: 'ad4501a3-233b-41d6-8d80-0e6e0a4ae2b4',
-full_name: 'Jane Doe',
-email: 'janedoe@gmail.com'
-}, {
-customer_id: '639da415-bd0e-4807-a4e8-6979c1910c25',
-full_name: 'Micheal Oluwafemi',
-email: 'michealakintola106.pog@gmail.com'
-}]
+| Customer ID                          | Full Name         | Email                            |
+| ------------------------------------ | ----------------- | -------------------------------- |
+| ad4501a3-233b-41d6-8d80-0e6e0a4ae2b4 | Jane Doe          | janedoe@gmail.com                |
+| 639da415-bd0e-4807-a4e8-6979c1910c25 | Micheal Oluwafemi | michealakintola106.pog@gmail.com |
 
 # Accounts
 
-[{
-customer_id: 'ad4501a3-233b-41d6-8d80-0e6e0a4ae2b4'
-account_number: '001122334455',
-account_balance: '5000.00',
-account_type: 'savings',
-}, {
-customer_id: '639da415-bd0e-4807-a4e8-6979c1910c25',
-account_number: '1020304050',
-account_balance: '4000.00',
-account_type: 'savings',
-}]
+| Customer ID                          | Account Number | Account Balance | Account Type |
+| ------------------------------------ | -------------- | --------------- | ------------ |
+| ad4501a3-233b-41d6-8d80-0e6e0a4ae2b4 | 001122334455   | 5000.00         | savings      |
+| 639da415-bd0e-4807-a4e8-6979c1910c25 | 1020304050     | 4000.00         | savings      |
