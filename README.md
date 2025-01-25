@@ -26,9 +26,9 @@
 
 [bankingbh] bankingbh API to be used for opening a new "current account" of already existing customers. It contains the following endpoints
 
-1. [Current account creation](scheme://host:port/api/v1/open-current-account) [POST]
-2. [Fetch Customer Accounts and Details](scheme://host:port/api/v1/customer/:customer_id) [GET]
-3. [Fetch Account Transactions](scheme://host:port/api/v1/transactions/:account_number) [GET]
+1. [Current account creation](http://localhost:3001/api/v1/open-current-account) [POST]
+2. [Fetch Customer Accounts and Details](http://localhost:3001/api/v1/customer/:customer_id) [GET]
+3. [Fetch Account Transactions](http://localhost:3001/api/v1/transactions/:account_number) [GET]
 
 ### Technologies Used
 
@@ -41,20 +41,20 @@
 After pulling the repo, follow these steps to set up the project:
 
 1. From your terminal, change directory to the root directory of the project.
-2. Adjust the `.env` file with variable names from `env.sample`.
-3.
+2. Create `.env` file with variable names from `env.sample`.
+3. Install packages
 
 ```bash
 $ npm install
 ```
 
-4.
+4. Create database and seed data to it. See below for seeded records
 
 ```bash
 $ npx prisma migrate deploy
 ```
 
-4.
+4. Start the project
 
 ```bash
 $ npm run start:dev
@@ -92,3 +92,31 @@ $ npm run test:cov
 - [Prisma Documentation](http://prisma.io).
 
 # bankingbh
+
+## Seeded Data
+
+# Customers
+
+[{
+customer_id: 'ad4501a3-233b-41d6-8d80-0e6e0a4ae2b4',
+full_name: 'Jane Doe',
+email: 'janedoe@gmail.com'
+}, {
+customer_id: '639da415-bd0e-4807-a4e8-6979c1910c25',
+full_name: 'Micheal Oluwafemi',
+email: 'michealakintola106.pog@gmail.com'
+}]
+
+# Accounts
+
+[{
+customer_id: 'ad4501a3-233b-41d6-8d80-0e6e0a4ae2b4'
+account_number: '001122334455',
+account_balance: '5000.00',
+account_type: 'savings',
+}, {
+customer_id: '639da415-bd0e-4807-a4e8-6979c1910c25',
+account_number: '1020304050',
+account_balance: '4000.00',
+account_type: 'savings',
+}]
