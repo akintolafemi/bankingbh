@@ -24,12 +24,40 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+[bankingbh] bankingbh API to be used for opening a new "current account" of already existing customers. It contains the following endpoints
+
+1. [Current account creation](scheme://host:port/api/v1/open-current-account) [POST]
+2. [Fetch Customer Accounts and Details](scheme://host:port/api/v1/customer/:customer_id) [GET]
+3. [Fetch Account Transactions](scheme://host:port/api/v1/transactions/:account_number) [GET]
+
+### Technologies Used
+
+- **ORM**: Prisma
+- **Database**: Sqlite
+- **Authentication**: Bearer Token
 
 ## Project setup
 
+After pulling the repo, follow these steps to set up the project:
+
+1. From your terminal, change directory to the root directory of the project.
+2. Adjust the `.env` file with variable names from `env.sample`.
+3.
+
 ```bash
 $ npm install
+```
+
+4.
+
+```bash
+$ npx prisma migrate deploy
+```
+
+4.
+
+```bash
+$ npm run start:dev
 ```
 
 ## Compile and run the project
@@ -60,27 +88,7 @@ $ npm run test:cov
 
 ## Resources
 
-Check out a few resources that may come in handy when working with NestJS:
+- [NestJS Documentation](https://docs.nestjs.com).
+- [Prisma Documentation](http://prisma.io).
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
 # bankingbh
